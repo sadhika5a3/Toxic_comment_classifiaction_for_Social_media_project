@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxicity Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure this is the correct path -->
+    <style>
+        body {
+            background-image: url('static/1.gif'); /* Replace with your image path */
+            background-size: cover; /* Ensure the image covers the whole page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            color: white; /* Adjust text color for better readability against background */
+        }
+        .toxicity-label {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .toxicity-clean {
+            background-color: #28a745;
+            color: white;
+        }
+        .toxicity-toxic {
+            background-color: #dc3545;
+            color: white;
+        }
+        .hover-effect:hover {
+            color: #F76E11; /* Change text color on hover */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+        /* Add these styles to make table text white */
+        .table {
+            color: white; /* Change text color for table */
+        }
+        .table th, .table td {
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background color to cells for better contrast */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        
+        <h1 class="text-center hover-effect">Analyse the Toxicity of a comment!</h1>
+        <form method="POST" action="/predict">
+            <div class="form-group">
+                <label for="text" class="hover-effect">Enter your comment:</label>
+                <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary hover-effect">Predict</button>
+        </form>
+
+        {% if predictions %}
+            <h3 class="mt-4 hover-effect">Prediction Results for the Input Comment:</h3>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Prediction (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category, prediction in predictions.items() %}
+                        <tr>
+                            <td>{{ category }}</td>
+                            <td>{{ prediction }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Toxicity Classification with color -->
+            <div class="toxicity-label {% if toxicity_label == 'Toxic' %}toxicity-toxic{% else %}toxicity-clean{% endif %}">
+                <strong>Overall Classification:</strong> {{ toxicity_label }}
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
