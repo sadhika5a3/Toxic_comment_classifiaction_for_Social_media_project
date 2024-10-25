@@ -1,0 +1,44 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    min-height: 100vh; /* Ensure full height */
+    font-family: 'Montserrat', sans-serif;
+    background-color:blue; /* Replace with actual URL */
+    background-size: cover; /* Ensure the background covers the entire body */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    overflow: hidden; /* Prevent scrolling if the background is larger than the viewport */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a slight background to the container for better readability */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around the content */
+}
+
+.main-header {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
+.text-box {
+    margin: auto;
+}
+
+.main-container {
+    margin-top: 2%;
+    font-family: "Ubuntu";
+}
+
+.classify-btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #F76E11;
+}
+
+.comment {
+    color: #313552;
+}
